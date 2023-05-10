@@ -29,6 +29,11 @@ function loadImage(e) {
   outputPath.innerText = path.join(os.homedir(), "imageresizer");
 }
 
+// Catch the image:done event
+ipcRenderer.on("image:done", () => {
+  alertSuccess(`Image resized to ${widthInput.value} x ${heightInput.value}`);
+});
+
 // Make sure file is an image
 function isFileImage(file) {
   const acceptedImageTypes = ["image/gif", "image/jpeg", "image/png"];
